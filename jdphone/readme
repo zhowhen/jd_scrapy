@@ -1,0 +1,13 @@
+爬取京东所有手机条目
+包括id，title，price，详情页url，评论数以及产品详细参数
+使用scrapy框架
+关于每页条目抓取
+1、开始会通过url：https://search.jd.com/Search?keyword=关键词（手机）&enc=utf-8&wq=关键词（手机）&cid2=653&qrst=1&rt=1&stop=1&vt=2&cid3=655&page=页码&s=59&click=0"
+获取前面30个条目
+2、再通过前面获取的30个条目的id请求url：https://search.jd.com/s_new.php?keyword=关键词（手机）&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&suggest=1.his.0.0&cid2=653&cid3=655&page=当前页码+1&s=28&scrolling=y&log_id=1551336158.44375&tpl=3_M&show_items=前30个条目id"
+PS：前30个条目的id用","拼接，当前页码+1（相当于第一个完整页面的page为1和2，第二个为3和4，由此类推……）
+
+关于评论数目抓取，通过抓包工具发现每条评论都会通过
+https://club.jd.com/comment/productCommentSummaries.action?referenceIds=产品id&callback=jQuery4359560&_=时间戳
+获取，返回的是json数据，使用json解析即可
+
